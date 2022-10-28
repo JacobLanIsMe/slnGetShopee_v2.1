@@ -195,31 +195,28 @@ namespace prjGetShopee_v2._1
                             {
                                 int quantity = random.Next(10, 101);
                                 decimal unitPrice = Convert.ToDecimal(driver.FindElement(By.CssSelector("._2Shl1j")).Text.Replace("$", "").Replace(",", "").Replace("-", "").Replace(" ", ""));
+                                var productDetailPicUrls = driver.FindElements(By.CssSelector("._3CXjs-._3DKwBj"));
                                 string productDetailPicUrl = "";
-                                var picture = driver.FindElements(By.CssSelector("._2_49CO"));
-                                if (picture.Count > 0)
-                                {
-                                    productDetailPicUrl = driver.FindElement(By.CssSelector("._2_49CO")).GetAttribute("style").Split('"')[1];
-                                }
-                                else
+                                if (productDetailPicUrls.Count > 0)
                                 {
                                     productDetailPicUrl = driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj")).GetAttribute("style").Split('"')[1];
                                 }
+                                byte[] photo = null;
                                 if (productDetailPicUrl != "")
                                 {
                                     HttpClient client = new HttpClient();
-                                    byte[] photo = await client.GetByteArrayAsync(productDetailPicUrl);
-                                    ProductDetail productDetail = new ProductDetail
-                                    {
-                                        ProductID = productID,
-                                        Style = style,
-                                        Quantity = quantity,
-                                        UnitPrice = unitPrice,
-                                        Pic = photo,
-                                    };
-                                    dbContext.ProductDetails.Add(productDetail);
-                                    dbContext.SaveChanges();
+                                    photo = await client.GetByteArrayAsync(productDetailPicUrl);
                                 }
+                                ProductDetail productDetail = new ProductDetail
+                                {
+                                    ProductID = productID,
+                                    Style = style,
+                                    Quantity = quantity,
+                                    UnitPrice = unitPrice,
+                                    Pic = photo,
+                                };
+                                dbContext.ProductDetails.Add(productDetail);
+                                dbContext.SaveChanges();
                             }
                         }
                     }
@@ -270,6 +267,7 @@ namespace prjGetShopee_v2._1
                     }
                 }
             }
+            MessageBox.Show("爬完了"); 
         }
     }
 }
