@@ -307,7 +307,7 @@ namespace prjGetShopee_v2._1
                 Dictionary<string, string> smallTypeDic = new Dictionary<string, string>();
                 foreach (var b in smallTypeUrlTaq)
                 {
-                    smallTypeDic.Add(b.GetAttribute("htrf"), b.Text);
+                    smallTypeDic.Add(b.GetAttribute("href"), b.Text);
                 }
                 foreach (var b in smallTypeDic)
                 {
