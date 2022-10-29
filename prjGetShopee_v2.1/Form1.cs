@@ -393,11 +393,18 @@ namespace prjGetShopee_v2._1
                                     {
                                         continue;
                                     }
-                                    var productDetailPicTaq = driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj"));
+                                    var productDetailPicTaq = driver.FindElements(By.CssSelector("._3CXjs-._3DKwBj"));
                                     string productDetailPicUrl = "";
-                                    if (productDetailPicTaq != null)
+                                    if (productDetailPicTaq.Count > 0)
                                     {
-                                        productDetailPicUrl = productDetailPicTaq.GetAttribute("style").Split('"')[1];
+                                        try
+                                        {
+                                            productDetailPicUrl = driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj")).GetAttribute("style").Split('"')[1];
+                                        }
+                                        catch
+                                        {
+                                            productDetailPicUrl = driver.FindElements(By.CssSelector("._1BkYjB._3DKwBj"))[1].GetAttribute("style").Split('"')[1];
+                                        }
                                     }
                                     byte[] photo = null;
                                     if (productDetailPicUrl != "")
@@ -429,7 +436,14 @@ namespace prjGetShopee_v2._1
                                     string productDetailPicUrl = "";
                                     if (productDetailPicUrls.Count > 0)
                                     {
-                                        productDetailPicUrl = driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj")).GetAttribute("style").Split('"')[1];
+                                        try
+                                        {
+                                            productDetailPicUrl = driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj")).GetAttribute("style").Split('"')[1];
+                                        }
+                                        catch
+                                        {
+                                            productDetailPicUrl = driver.FindElements(By.CssSelector("._1BkYjB._3DKwBj"))[1].GetAttribute("style").Split('"')[1];
+                                        }
                                     }
                                     byte[] photo = null;
                                     if (productDetailPicUrl != "")
@@ -451,14 +465,10 @@ namespace prjGetShopee_v2._1
                             }
                         }
                         Thread.Sleep(300);
-                        var pic = driver.FindElements(By.CssSelector("._2_49CO"));
+                        var pic = driver.FindElements(By.CssSelector("._3Usfk_"));
                         if (pic.Count > 0)
                         {
-                            driver.FindElement(By.CssSelector("._2_49CO")).Click();
-                        }
-                        else
-                        {
-                            driver.FindElement(By.CssSelector("._3CXjs-._3DKwBj")).Click();
+                            driver.FindElement(By.CssSelector("._3Usfk_")).Click();
                         }
                         Thread.Sleep(300);
                         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
