@@ -86,6 +86,8 @@
           <Property Name="CommentStar" Type="tinyint" Nullable="false" />
           <Property Name="CommentTime" Type="datetime" Nullable="false" />
           <Property Name="ShipperStar" Type="int" Nullable="false" />
+          <Property Name="Comment2" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Comment3" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="CommentForCustomer">
           <Key>
@@ -127,6 +129,7 @@
           <Property Name="ReceiveEndDate" Type="datetime" Nullable="false" />
           <Property Name="IsFreeDelivery" Type="bit" Nullable="false" />
           <Property Name="MinimumOrder" Type="int" Nullable="false" />
+          <Property Name="OfficialEventListID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CouponWallet">
           <Key>
@@ -212,6 +215,7 @@
           <Property Name="AfterSales" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="RenewProduct" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="SellerType" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ReportedTime" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MemStatus">
           <Key>
@@ -262,7 +266,7 @@
           <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="OrderDatetime" Type="datetime" Nullable="false" />
-          <Property Name="RecieveAdr" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecieveAdr" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="FinishDate" Type="date" Nullable="false" />
           <Property Name="CouponID" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
@@ -272,6 +276,9 @@
           <Property Name="ReceiveDate" Type="datetime" Nullable="false" />
           <Property Name="PaymentID" Type="int" Nullable="false" />
           <Property Name="OrderMessage" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="RecieveName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RecieveEmail" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RecievePhone" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -287,14 +294,6 @@
           <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Fee" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PaymentToProduct">
-          <Key>
-            <PropertyRef Name="PaymentToProductID" />
-          </Key>
-          <Property Name="PaymentToProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentID" Type="int" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentToSeller">
           <Key>
@@ -324,7 +323,7 @@
           </Key>
           <Property Name="ProductDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Style" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Style" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="UnitPrice" Type="money" Nullable="false" />
           <Property Name="Pic" Type="varbinary(max)" />
@@ -395,14 +394,6 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Fee" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ShipperToProduct">
-          <Key>
-            <PropertyRef Name="ShipperToProductID" />
-          </Key>
-          <Property Name="ShipperToProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShipperID" Type="int" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="ShipperToSeller">
           <Key>
             <PropertyRef Name="ShipperToMemberID" />
@@ -443,6 +434,23 @@
           <Property Name="SubOfficialEventToProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubOfficialEventListID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebAD">
+          <Key>
+            <PropertyRef Name="WebADID" />
+          </Key>
+          <Property Name="WebADID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebADImage" Type="varbinary(max)" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="WebADImageTypeID" Type="int" Nullable="false" />
+          <Property Name="IsPublishing" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebADImageType">
+          <Key>
+            <PropertyRef Name="WebADImageTypeID" />
+          </Key>
+          <Property Name="WebADImageTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADToProduct_AD">
           <End Role="AD" Type="Self.AD" Multiplicity="1" />
@@ -792,30 +800,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentToProduct_Payment">
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
-          <End Role="PaymentToProduct" Type="Self.PaymentToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Payment">
-              <PropertyRef Name="PaymentID" />
-            </Principal>
-            <Dependent Role="PaymentToProduct">
-              <PropertyRef Name="PaymentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentToProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="PaymentToProduct" Type="Self.PaymentToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="PaymentToProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentToSeller_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
           <End Role="PaymentToSeller" Type="Self.PaymentToSeller" Multiplicity="*" />
@@ -996,30 +980,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ShipperToProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ShipperToProduct" Type="Self.ShipperToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="ShipperToProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShipperToProduct_Shipper">
-          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
-          <End Role="ShipperToProduct" Type="Self.ShipperToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shipper">
-              <PropertyRef Name="ShipperID" />
-            </Principal>
-            <Dependent Role="ShipperToProduct">
-              <PropertyRef Name="ShipperID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ShipperToSeller_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
           <End Role="ShipperToSeller" Type="Self.ShipperToSeller" Multiplicity="*" />
@@ -1116,6 +1076,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WebAD_MemberAccount">
+          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+          <End Role="WebAD" Type="Self.WebAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccount">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="WebAD">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebAD_WebADImageType">
+          <End Role="WebADImageType" Type="Self.WebADImageType" Multiplicity="1" />
+          <End Role="WebAD" Type="Self.WebAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebADImageType">
+              <PropertyRef Name="WebADImageTypeID" />
+            </Principal>
+            <Dependent Role="WebAD">
+              <PropertyRef Name="WebADImageTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="iSpanProjectModelStoreContainer">
           <EntitySet Name="AD" EntityType="Self.AD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ADToProduct" EntityType="Self.ADToProduct" Schema="dbo" store:Type="Tables" />
@@ -1145,7 +1129,6 @@
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PaymentToProduct" EntityType="Self.PaymentToProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentToSeller" EntityType="Self.PaymentToSeller" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
@@ -1157,12 +1140,13 @@
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportType" EntityType="Self.ReportType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ShipperToProduct" EntityType="Self.ShipperToProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShipperToSeller" EntityType="Self.ShipperToSeller" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShippingStatus" EntityType="Self.ShippingStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SmallType" EntityType="Self.SmallType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubOfficialEventList" EntityType="Self.SubOfficialEventList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubOfficialEventToProduct" EntityType="Self.SubOfficialEventToProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebAD" EntityType="Self.WebAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebADImageType" EntityType="Self.WebADImageType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ADToProduct_AD" Association="Self.FK_ADToProduct_AD">
             <End Role="AD" EntitySet="AD" />
             <End Role="ADToProduct" EntitySet="ADToProduct" />
@@ -1279,14 +1263,6 @@
             <End Role="OrderStatus" EntitySet="OrderStatus" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentToProduct_Payment" Association="Self.FK_PaymentToProduct_Payment">
-            <End Role="Payment" EntitySet="Payment" />
-            <End Role="PaymentToProduct" EntitySet="PaymentToProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentToProduct_Product" Association="Self.FK_PaymentToProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="PaymentToProduct" EntitySet="PaymentToProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentToSeller_MemberAccount" Association="Self.FK_PaymentToSeller_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="PaymentToSeller" EntitySet="PaymentToSeller" />
@@ -1347,14 +1323,6 @@
             <End Role="RegionList" EntitySet="RegionList" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShipperToProduct_Product" Association="Self.FK_ShipperToProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ShipperToProduct" EntitySet="ShipperToProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShipperToProduct_Shipper" Association="Self.FK_ShipperToProduct_Shipper">
-            <End Role="Shipper" EntitySet="Shipper" />
-            <End Role="ShipperToProduct" EntitySet="ShipperToProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_ShipperToSeller_MemberAccount" Association="Self.FK_ShipperToSeller_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="ShipperToSeller" EntitySet="ShipperToSeller" />
@@ -1386,6 +1354,14 @@
           <AssociationSet Name="FK_Wallet_MemberAccount" Association="Self.FK_Wallet_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="CouponWallet" EntitySet="CouponWallet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebAD_MemberAccount" Association="Self.FK_WebAD_MemberAccount">
+            <End Role="MemberAccount" EntitySet="MemberAccount" />
+            <End Role="WebAD" EntitySet="WebAD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebAD_WebADImageType" Association="Self.FK_WebAD_WebADImageType">
+            <End Role="WebADImageType" EntitySet="WebADImageType" />
+            <End Role="WebAD" EntitySet="WebAD" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1487,6 +1463,8 @@
           <Property Name="CommentStar" Type="Byte" Nullable="false" />
           <Property Name="CommentTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ShipperStar" Type="Int32" Nullable="false" />
+          <Property Name="Comment2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="OrderDetail" Relationship="Self.FK_Comment_OrderDetails" FromRole="Comment" ToRole="OrderDetails" />
           <NavigationProperty Name="CommentPics" Relationship="Self.FK_CommentPic_Comment" FromRole="Comment" ToRole="CommentPic" />
         </EntityType>
@@ -1533,6 +1511,7 @@
           <Property Name="ReceiveEndDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsFreeDelivery" Type="Boolean" Nullable="false" />
           <Property Name="MinimumOrder" Type="Int32" Nullable="false" />
+          <Property Name="OfficialEventListID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Coupons" FromRole="Coupons" ToRole="Orders" />
           <NavigationProperty Name="CouponWallets" Relationship="Self.FK_Wallet_Coupons" FromRole="Coupons" ToRole="CouponWallet" />
         </EntityType>
@@ -1631,6 +1610,7 @@
           <Property Name="AfterSales" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RenewProduct" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SellerType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportedTime" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ChatLogs" Relationship="Self.FK_ChatLog_MemberAccount" FromRole="MemberAccount" ToRole="ChatLog" />
           <NavigationProperty Name="ChatLogs1" Relationship="Self.FK_ChatLog_MemberAccount1" FromRole="MemberAccount" ToRole="ChatLog" />
           <NavigationProperty Name="CouponWallets" Relationship="Self.FK_Wallet_MemberAccount" FromRole="MemberAccount" ToRole="CouponWallet" />
@@ -1647,6 +1627,7 @@
           <NavigationProperty Name="Reports" Relationship="Self.FK_Report_MemberAccount" FromRole="MemberAccount" ToRole="Report" />
           <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="MemberAccount" ToRole="Product" />
           <NavigationProperty Name="ShipperToSellers" Relationship="Self.FK_ShipperToSeller_MemberAccount" FromRole="MemberAccount" ToRole="ShipperToSeller" />
+          <NavigationProperty Name="WebADs" Relationship="Self.FK_WebAD_MemberAccount" FromRole="MemberAccount" ToRole="WebAD" />
         </EntityType>
         <EntityType Name="MemStatu">
           <Key>
@@ -1705,7 +1686,7 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="OrderDatetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RecieveAdr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecieveAdr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CouponID" Type="Int32" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
@@ -1715,6 +1696,9 @@
           <Property Name="ReceiveDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaymentID" Type="Int32" Nullable="false" />
           <Property Name="OrderMessage" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecieveName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecieveEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecievePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Arguments" Relationship="Self.FK_Argument_Orders" FromRole="Orders" ToRole="Argument" />
           <NavigationProperty Name="CommentForCustomers" Relationship="Self.FK_CommentForCustomer_Orders" FromRole="Orders" ToRole="CommentForCustomer" />
           <NavigationProperty Name="Coupon" Relationship="Self.FK_Orders_Coupons" FromRole="Orders" ToRole="Coupons" />
@@ -1740,18 +1724,7 @@
           <Property Name="PaymentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Fee" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Payment" FromRole="Payment" ToRole="Orders" />
-          <NavigationProperty Name="PaymentToProducts" Relationship="Self.FK_PaymentToProduct_Payment" FromRole="Payment" ToRole="PaymentToProduct" />
           <NavigationProperty Name="PaymentToSellers" Relationship="Self.FK_PaymentToSeller_Payment" FromRole="Payment" ToRole="PaymentToSeller" />
-        </EntityType>
-        <EntityType Name="PaymentToProduct">
-          <Key>
-            <PropertyRef Name="PaymentToProductID" />
-          </Key>
-          <Property Name="PaymentToProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Payment" Relationship="Self.FK_PaymentToProduct_Payment" FromRole="PaymentToProduct" ToRole="Payment" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_PaymentToProduct_Product" FromRole="PaymentToProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="PaymentToSeller">
           <Key>
@@ -1780,14 +1753,12 @@
           <NavigationProperty Name="CustomizedCategory" Relationship="Self.FK_Product_CustomizedCategory" FromRole="Product" ToRole="CustomizedCategory" />
           <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Product" FromRole="Product" ToRole="Likes" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="Product" ToRole="MemberAccount" />
-          <NavigationProperty Name="PaymentToProducts" Relationship="Self.FK_PaymentToProduct_Product" FromRole="Product" ToRole="PaymentToProduct" />
           <NavigationProperty Name="ProductStatu" Relationship="Self.FK_Product_ProductStatus1" FromRole="Product" ToRole="ProductStatus" />
           <NavigationProperty Name="ProductDetails" Relationship="Self.FK_Product_SalesCourt" FromRole="Product" ToRole="ProductDetail" />
           <NavigationProperty Name="SmallType" Relationship="Self.FK_Product_SmallType" FromRole="Product" ToRole="SmallType" />
           <NavigationProperty Name="ProductPics" Relationship="Self.FK_ProductPic_Product" FromRole="Product" ToRole="ProductPic" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Product" FromRole="Product" ToRole="Report" />
           <NavigationProperty Name="RegionList" Relationship="Self.FK_SalesCourt_RegionList" FromRole="Product" ToRole="RegionList" />
-          <NavigationProperty Name="ShipperToProducts" Relationship="Self.FK_ShipperToProduct_Product" FromRole="Product" ToRole="ShipperToProduct" />
           <NavigationProperty Name="SubOfficialEventToProducts" Relationship="Self.FK_SubOfficialEventToProduct_Product" FromRole="Product" ToRole="SubOfficialEventToProduct" />
         </EntityType>
         <EntityType Name="ProductDetail">
@@ -1796,7 +1767,7 @@
           </Key>
           <Property Name="ProductDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Style" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -1881,18 +1852,7 @@
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Fee" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Shipper" FromRole="Shipper" ToRole="Orders" />
-          <NavigationProperty Name="ShipperToProducts" Relationship="Self.FK_ShipperToProduct_Shipper" FromRole="Shipper" ToRole="ShipperToProduct" />
           <NavigationProperty Name="ShipperToSellers" Relationship="Self.FK_ShipperToSeller_Shipper" FromRole="Shipper" ToRole="ShipperToSeller" />
-        </EntityType>
-        <EntityType Name="ShipperToProduct">
-          <Key>
-            <PropertyRef Name="ShipperToProductID" />
-          </Key>
-          <Property Name="ShipperToProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShipperID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ShipperToProduct_Product" FromRole="ShipperToProduct" ToRole="Product" />
-          <NavigationProperty Name="Shipper" Relationship="Self.FK_ShipperToProduct_Shipper" FromRole="ShipperToProduct" ToRole="Shipper" />
         </EntityType>
         <EntityType Name="ShipperToSeller">
           <Key>
@@ -1943,6 +1903,26 @@
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SubOfficialEventToProduct_Product" FromRole="SubOfficialEventToProduct" ToRole="Product" />
           <NavigationProperty Name="SubOfficialEventList" Relationship="Self.FK_SubOfficialEventToProduct_SubOfficialEventList" FromRole="SubOfficialEventToProduct" ToRole="SubOfficialEventList" />
+        </EntityType>
+        <EntityType Name="WebAD">
+          <Key>
+            <PropertyRef Name="WebADID" />
+          </Key>
+          <Property Name="WebADID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebADImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="WebADImageTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsPublishing" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MemberAccount" Relationship="Self.FK_WebAD_MemberAccount" FromRole="WebAD" ToRole="MemberAccount" />
+          <NavigationProperty Name="WebADImageType" Relationship="Self.FK_WebAD_WebADImageType" FromRole="WebAD" ToRole="WebADImageType" />
+        </EntityType>
+        <EntityType Name="WebADImageType">
+          <Key>
+            <PropertyRef Name="WebADImageTypeID" />
+          </Key>
+          <Property Name="WebADImageTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WebADs" Relationship="Self.FK_WebAD_WebADImageType" FromRole="WebADImageType" ToRole="WebAD" />
         </EntityType>
         <Association Name="FK_ADToProduct_AD">
           <End Role="AD" Type="Self.AD" Multiplicity="1" />
@@ -2340,6 +2320,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WebAD_MemberAccount">
+          <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+          <End Role="WebAD" Type="Self.WebAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccount">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="WebAD">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubOfficialEventList_OfficialEventList">
           <End Role="OfficialEventList" Type="Self.OfficialEventList" Multiplicity="1" />
           <End Role="SubOfficialEventList" Type="Self.SubOfficialEventList" Multiplicity="*" />
@@ -2424,18 +2416,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentToProduct_Payment">
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
-          <End Role="PaymentToProduct" Type="Self.PaymentToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Payment">
-              <PropertyRef Name="PaymentID" />
-            </Principal>
-            <Dependent Role="PaymentToProduct">
-              <PropertyRef Name="PaymentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentToSeller_Payment">
           <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
           <End Role="PaymentToSeller" Type="Self.PaymentToSeller" Multiplicity="*" />
@@ -2445,18 +2425,6 @@
             </Principal>
             <Dependent Role="PaymentToSeller">
               <PropertyRef Name="PaymentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentToProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="PaymentToProduct" Type="Self.PaymentToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="PaymentToProduct">
-              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2532,18 +2500,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ShipperToProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ShipperToProduct" Type="Self.ShipperToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="ShipperToProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SubOfficialEventToProduct_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="SubOfficialEventToProduct" Type="Self.SubOfficialEventToProduct" Multiplicity="*" />
@@ -2580,18 +2536,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ShipperToProduct_Shipper">
-          <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
-          <End Role="ShipperToProduct" Type="Self.ShipperToProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shipper">
-              <PropertyRef Name="ShipperID" />
-            </Principal>
-            <Dependent Role="ShipperToProduct">
-              <PropertyRef Name="ShipperID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ShipperToSeller_Shipper">
           <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
           <End Role="ShipperToSeller" Type="Self.ShipperToSeller" Multiplicity="*" />
@@ -2613,6 +2557,18 @@
             </Principal>
             <Dependent Role="SubOfficialEventToProduct">
               <PropertyRef Name="SubOfficialEventListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebAD_WebADImageType">
+          <End Role="WebADImageType" Type="Self.WebADImageType" Multiplicity="1" />
+          <End Role="WebAD" Type="Self.WebAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebADImageType">
+              <PropertyRef Name="WebADImageTypeID" />
+            </Principal>
+            <Dependent Role="WebAD">
+              <PropertyRef Name="WebADImageTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2645,7 +2601,6 @@
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
-          <EntitySet Name="PaymentToProducts" EntityType="Self.PaymentToProduct" />
           <EntitySet Name="PaymentToSellers" EntityType="Self.PaymentToSeller" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ProductDetails" EntityType="Self.ProductDetail" />
@@ -2657,12 +2612,13 @@
           <EntitySet Name="ReportStatus" EntityType="Self.ReportStatu" />
           <EntitySet Name="ReportTypes" EntityType="Self.ReportType" />
           <EntitySet Name="Shippers" EntityType="Self.Shipper" />
-          <EntitySet Name="ShipperToProducts" EntityType="Self.ShipperToProduct" />
           <EntitySet Name="ShipperToSellers" EntityType="Self.ShipperToSeller" />
           <EntitySet Name="ShippingStatus" EntityType="Self.ShippingStatu" />
           <EntitySet Name="SmallTypes" EntityType="Self.SmallType" />
           <EntitySet Name="SubOfficialEventLists" EntityType="Self.SubOfficialEventList" />
           <EntitySet Name="SubOfficialEventToProducts" EntityType="Self.SubOfficialEventToProduct" />
+          <EntitySet Name="WebADs" EntityType="Self.WebAD" />
+          <EntitySet Name="WebADImageTypes" EntityType="Self.WebADImageType" />
           <AssociationSet Name="FK_ADToProduct_AD" Association="Self.FK_ADToProduct_AD">
             <End Role="AD" EntitySet="ADs" />
             <End Role="ADToProduct" EntitySet="ADToProducts" />
@@ -2795,6 +2751,10 @@
             <End Role="MemberAccount" EntitySet="MemberAccounts" />
             <End Role="ShipperToSeller" EntitySet="ShipperToSellers" />
           </AssociationSet>
+          <AssociationSet Name="FK_WebAD_MemberAccount" Association="Self.FK_WebAD_MemberAccount">
+            <End Role="MemberAccount" EntitySet="MemberAccounts" />
+            <End Role="WebAD" EntitySet="WebADs" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubOfficialEventList_OfficialEventList" Association="Self.FK_SubOfficialEventList_OfficialEventList">
             <End Role="OfficialEventList" EntitySet="OfficialEventLists" />
             <End Role="SubOfficialEventList" EntitySet="SubOfficialEventLists" />
@@ -2823,17 +2783,9 @@
             <End Role="OrderStatus" EntitySet="OrderStatus" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentToProduct_Payment" Association="Self.FK_PaymentToProduct_Payment">
-            <End Role="Payment" EntitySet="Payments" />
-            <End Role="PaymentToProduct" EntitySet="PaymentToProducts" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentToSeller_Payment" Association="Self.FK_PaymentToSeller_Payment">
             <End Role="Payment" EntitySet="Payments" />
             <End Role="PaymentToSeller" EntitySet="PaymentToSellers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentToProduct_Product" Association="Self.FK_PaymentToProduct_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="PaymentToProduct" EntitySet="PaymentToProducts" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductStatus1" Association="Self.FK_Product_ProductStatus1">
             <End Role="ProductStatus" EntitySet="ProductStatus" />
@@ -2859,10 +2811,6 @@
             <End Role="RegionList" EntitySet="RegionLists" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShipperToProduct_Product" Association="Self.FK_ShipperToProduct_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ShipperToProduct" EntitySet="ShipperToProducts" />
-          </AssociationSet>
           <AssociationSet Name="FK_SubOfficialEventToProduct_Product" Association="Self.FK_SubOfficialEventToProduct_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="SubOfficialEventToProduct" EntitySet="SubOfficialEventToProducts" />
@@ -2875,10 +2823,6 @@
             <End Role="ReportType" EntitySet="ReportTypes" />
             <End Role="Report" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShipperToProduct_Shipper" Association="Self.FK_ShipperToProduct_Shipper">
-            <End Role="Shipper" EntitySet="Shippers" />
-            <End Role="ShipperToProduct" EntitySet="ShipperToProducts" />
-          </AssociationSet>
           <AssociationSet Name="FK_ShipperToSeller_Shipper" Association="Self.FK_ShipperToSeller_Shipper">
             <End Role="Shipper" EntitySet="Shippers" />
             <End Role="ShipperToSeller" EntitySet="ShipperToSellers" />
@@ -2886,6 +2830,10 @@
           <AssociationSet Name="FK_SubOfficialEventToProduct_SubOfficialEventList" Association="Self.FK_SubOfficialEventToProduct_SubOfficialEventList">
             <End Role="SubOfficialEventList" EntitySet="SubOfficialEventLists" />
             <End Role="SubOfficialEventToProduct" EntitySet="SubOfficialEventToProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebAD_WebADImageType" Association="Self.FK_WebAD_WebADImageType">
+            <End Role="WebADImageType" EntitySet="WebADImageTypes" />
+            <End Role="WebAD" EntitySet="WebADs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -2982,6 +2930,8 @@
                 <ScalarProperty Name="CommentStar" ColumnName="CommentStar" />
                 <ScalarProperty Name="CommentTime" ColumnName="CommentTime" />
                 <ScalarProperty Name="ShipperStar" ColumnName="ShipperStar" />
+                <ScalarProperty Name="Comment2" ColumnName="Comment2" />
+                <ScalarProperty Name="Comment3" ColumnName="Comment3" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3027,6 +2977,7 @@
                 <ScalarProperty Name="ReceiveEndDate" ColumnName="ReceiveEndDate" />
                 <ScalarProperty Name="IsFreeDelivery" ColumnName="IsFreeDelivery" />
                 <ScalarProperty Name="MinimumOrder" ColumnName="MinimumOrder" />
+                <ScalarProperty Name="OfficialEventListID" ColumnName="OfficialEventListID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3120,6 +3071,7 @@
                 <ScalarProperty Name="AfterSales" ColumnName="AfterSales" />
                 <ScalarProperty Name="RenewProduct" ColumnName="RenewProduct" />
                 <ScalarProperty Name="SellerType" ColumnName="SellerType" />
+                <ScalarProperty Name="ReportedTime" ColumnName="ReportedTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3185,6 +3137,9 @@
                 <ScalarProperty Name="ReceiveDate" ColumnName="ReceiveDate" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="OrderMessage" ColumnName="OrderMessage" />
+                <ScalarProperty Name="RecieveName" ColumnName="RecieveName" />
+                <ScalarProperty Name="RecieveEmail" ColumnName="RecieveEmail" />
+                <ScalarProperty Name="RecievePhone" ColumnName="RecievePhone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3202,15 +3157,6 @@
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
                 <ScalarProperty Name="Fee" ColumnName="Fee" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentToProducts">
-            <EntityTypeMapping TypeName="iSpanProjectModel.PaymentToProduct">
-              <MappingFragment StoreEntitySet="PaymentToProduct">
-                <ScalarProperty Name="PaymentToProductID" ColumnName="PaymentToProductID" />
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3324,15 +3270,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ShipperToProducts">
-            <EntityTypeMapping TypeName="iSpanProjectModel.ShipperToProduct">
-              <MappingFragment StoreEntitySet="ShipperToProduct">
-                <ScalarProperty Name="ShipperToProductID" ColumnName="ShipperToProductID" />
-                <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ShipperToSellers">
             <EntityTypeMapping TypeName="iSpanProjectModel.ShipperToSeller">
               <MappingFragment StoreEntitySet="ShipperToSeller">
@@ -3376,6 +3313,25 @@
                 <ScalarProperty Name="SubOfficialEventToProductID" ColumnName="SubOfficialEventToProductID" />
                 <ScalarProperty Name="SubOfficialEventListID" ColumnName="SubOfficialEventListID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebADs">
+            <EntityTypeMapping TypeName="iSpanProjectModel.WebAD">
+              <MappingFragment StoreEntitySet="WebAD">
+                <ScalarProperty Name="WebADID" ColumnName="WebADID" />
+                <ScalarProperty Name="WebADImage" ColumnName="WebADImage" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="WebADImageTypeID" ColumnName="WebADImageTypeID" />
+                <ScalarProperty Name="IsPublishing" ColumnName="IsPublishing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebADImageTypes">
+            <EntityTypeMapping TypeName="iSpanProjectModel.WebADImageType">
+              <MappingFragment StoreEntitySet="WebADImageType">
+                <ScalarProperty Name="WebADImageTypeID" ColumnName="WebADImageTypeID" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

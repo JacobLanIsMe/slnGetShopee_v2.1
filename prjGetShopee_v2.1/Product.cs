@@ -19,11 +19,9 @@ namespace prjGetShopee_v2._1
         {
             this.ADToProducts = new HashSet<ADToProduct>();
             this.Likes = new HashSet<Like>();
-            this.PaymentToProducts = new HashSet<PaymentToProduct>();
             this.ProductDetails = new HashSet<ProductDetail>();
             this.ProductPics = new HashSet<ProductPic>();
             this.Reports = new HashSet<Report>();
-            this.ShipperToProducts = new HashSet<ShipperToProduct>();
             this.SubOfficialEventToProducts = new HashSet<SubOfficialEventToProduct>();
         }
     
@@ -43,8 +41,6 @@ namespace prjGetShopee_v2._1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Like> Likes { get; set; }
         public virtual MemberAccount MemberAccount { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentToProduct> PaymentToProducts { get; set; }
         public virtual ProductStatu ProductStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
@@ -54,8 +50,6 @@ namespace prjGetShopee_v2._1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
         public virtual RegionList RegionList { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShipperToProduct> ShipperToProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubOfficialEventToProduct> SubOfficialEventToProducts { get; set; }
     }

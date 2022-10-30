@@ -163,9 +163,6 @@
     <Compile Include="Payment.cs">
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
-    <Compile Include="PaymentToProduct.cs">
-      <DependentUpon>iSpanProject.tt</DependentUpon>
-    </Compile>
     <Compile Include="PaymentToSeller.cs">
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
@@ -201,9 +198,6 @@
     <Compile Include="Shipper.cs">
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
-    <Compile Include="ShipperToProduct.cs">
-      <DependentUpon>iSpanProject.tt</DependentUpon>
-    </Compile>
     <Compile Include="ShipperToSeller.cs">
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
@@ -217,6 +211,12 @@
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
     <Compile Include="SubOfficialEventToProduct.cs">
+      <DependentUpon>iSpanProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebAD.cs">
+      <DependentUpon>iSpanProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebADImageType.cs">
       <DependentUpon>iSpanProject.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">

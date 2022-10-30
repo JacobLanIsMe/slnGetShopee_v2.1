@@ -53,7 +53,6 @@ namespace prjGetShopee_v2._1
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<PaymentToProduct> PaymentToProducts { get; set; }
         public virtual DbSet<PaymentToSeller> PaymentToSellers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
@@ -65,11 +64,12 @@ namespace prjGetShopee_v2._1
         public virtual DbSet<ReportStatu> ReportStatus { get; set; }
         public virtual DbSet<ReportType> ReportTypes { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
-        public virtual DbSet<ShipperToProduct> ShipperToProducts { get; set; }
         public virtual DbSet<ShipperToSeller> ShipperToSellers { get; set; }
         public virtual DbSet<ShippingStatu> ShippingStatus { get; set; }
         public virtual DbSet<SmallType> SmallTypes { get; set; }
         public virtual DbSet<SubOfficialEventList> SubOfficialEventLists { get; set; }
         public virtual DbSet<SubOfficialEventToProduct> SubOfficialEventToProducts { get; set; }
+        public virtual DbSet<WebAD> WebADs { get; set; }
+        public virtual DbSet<WebADImageType> WebADImageTypes { get; set; }
     }
 }

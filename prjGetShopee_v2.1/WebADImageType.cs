@@ -12,22 +12,18 @@ namespace prjGetShopee_v2._1
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class WebADImageType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Payment()
+        public WebADImageType()
         {
-            this.Orders = new HashSet<Order>();
-            this.PaymentToSellers = new HashSet<PaymentToSeller>();
+            this.WebADs = new HashSet<WebAD>();
         }
     
-        public int PaymentID { get; set; }
-        public string PaymentName { get; set; }
-        public int Fee { get; set; }
+        public int WebADImageTypeID { get; set; }
+        public string ImageType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentToSeller> PaymentToSellers { get; set; }
+        public virtual ICollection<WebAD> WebADs { get; set; }
     }
 }

@@ -67,7 +67,6 @@ namespace prjGetShopee_v2._1
             // 
             // btnDelete
             // 
-            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(30, 583);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(196, 45);

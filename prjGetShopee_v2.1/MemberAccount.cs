@@ -31,6 +31,7 @@ namespace prjGetShopee_v2._1
             this.Reports = new HashSet<Report>();
             this.Products = new HashSet<Product>();
             this.ShipperToSellers = new HashSet<ShipperToSeller>();
+            this.WebADs = new HashSet<WebAD>();
         }
     
         public int MemberID { get; set; }
@@ -55,6 +56,7 @@ namespace prjGetShopee_v2._1
         public string AfterSales { get; set; }
         public string RenewProduct { get; set; }
         public string SellerType { get; set; }
+        public int ReportedTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatLog> ChatLogs { get; set; }
@@ -86,5 +88,7 @@ namespace prjGetShopee_v2._1
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShipperToSeller> ShipperToSellers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WebAD> WebADs { get; set; }
     }
 }

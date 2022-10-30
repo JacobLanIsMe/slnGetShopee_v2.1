@@ -32,6 +32,7 @@ namespace prjGetShopee_v2._1
         public System.DateTime ReceiveEndDate { get; set; }
         public bool IsFreeDelivery { get; set; }
         public int MinimumOrder { get; set; }
+        public int OfficialEventListID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

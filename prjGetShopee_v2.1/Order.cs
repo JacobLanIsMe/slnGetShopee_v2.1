@@ -35,6 +35,9 @@ namespace prjGetShopee_v2._1
         public System.DateTime ReceiveDate { get; set; }
         public int PaymentID { get; set; }
         public string OrderMessage { get; set; }
+        public string RecieveName { get; set; }
+        public string RecieveEmail { get; set; }
+        public string RecievePhone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Argument> Arguments { get; set; }

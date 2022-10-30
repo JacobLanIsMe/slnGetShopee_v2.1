@@ -12,13 +12,15 @@ namespace prjGetShopee_v2._1
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentToProduct
+    public partial class WebAD
     {
-        public int PaymentToProductID { get; set; }
-        public int PaymentID { get; set; }
-        public int ProductID { get; set; }
+        public int WebADID { get; set; }
+        public byte[] WebADImage { get; set; }
+        public int MemberID { get; set; }
+        public int WebADImageTypeID { get; set; }
+        public bool IsPublishing { get; set; }
     
-        public virtual Payment Payment { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual MemberAccount MemberAccount { get; set; }
+        public virtual WebADImageType WebADImageType { get; set; }
     }
 }

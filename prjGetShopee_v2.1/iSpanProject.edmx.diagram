@@ -4,53 +4,53 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="70672b85ed96469a89380ede13f8c511" Name="Diagram1">
-        <EntityTypeShape EntityType="iSpanProjectModel.AD" Width="1.5" PointX="12.75" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ADToProduct" Width="1.5" PointX="15" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ArguePic" Width="1.5" PointX="15" PointY="41.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Argument" Width="1.5" PointX="12.75" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ArgumentReason" Width="1.5" PointX="10.5" PointY="42.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ArgumentType" Width="1.5" PointX="10.5" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.BigType" Width="1.5" PointX="8.25" PointY="39.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ChatLog" Width="1.5" PointX="7.5" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Comment" Width="1.5" PointX="19.5" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.CommentForCustomer" Width="1.5" PointX="12.75" PointY="35.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.CommentPic" Width="1.5" PointX="21.75" PointY="33.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.CountryList" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Coupon" Width="1.5" PointX="8.25" PointY="34.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.CouponWallet" Width="1.5" PointX="10.5" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.CustomizedCategory" Width="1.5" PointX="7.5" PointY="28.75" IsExpanded="true" />
+      <Diagram DiagramId="95102bd98e0c4a468174ce6454a5729d" Name="Diagram1">
+        <EntityTypeShape EntityType="iSpanProjectModel.AD" Width="1.5" PointX="12.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ADToProduct" Width="1.5" PointX="15" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ArguePic" Width="1.5" PointX="20" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Argument" Width="1.5" PointX="17.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ArgumentReason" Width="1.5" PointX="15.5" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ArgumentType" Width="1.5" PointX="15.5" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.BigType" Width="1.5" PointX="8.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ChatLog" Width="1.5" PointX="7.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Comment" Width="1.5" PointX="19.5" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.CommentForCustomer" Width="1.5" PointX="12.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.CommentPic" Width="1.5" PointX="21.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.CountryList" Width="1.5" PointX="0.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Coupon" Width="1.5" PointX="8.25" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.CouponWallet" Width="1.5" PointX="10.5" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.CustomizedCategory" Width="1.5" PointX="7.5" PointY="27.5" IsExpanded="true" />
         <EntityTypeShape EntityType="iSpanProjectModel.FAQ" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="iSpanProjectModel.FAQType" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Follow" Width="1.5" PointX="7.5" PointY="31.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.IconType" Width="1.5" PointX="8.25" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Like" Width="1.5" PointX="18" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.MemberAccount" Width="1.5" PointX="5.25" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.MemStatu" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Notification" Width="1.5" PointX="10.5" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.OfficialEventList" Width="1.5" PointX="11.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.OrderDetail" Width="1.5" PointX="17.25" PointY="32.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Order" Width="1.5" PointX="10.5" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.OrderStatu" Width="1.5" PointX="8.25" PointY="42.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Payment" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.PaymentToProduct" Width="1.5" PointX="18" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.PaymentToSeller" Width="1.5" PointX="7.5" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Product" Width="1.5" PointX="12.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Follow" Width="1.5" PointX="7.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.IconType" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Like" Width="1.5" PointX="18" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.MemberAccount" Width="1.5" PointX="5.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.MemStatu" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Notification" Width="1.5" PointX="10.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.OfficialEventList" Width="1.5" PointX="13.5" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.OrderDetail" Width="1.5" PointX="17.25" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Order" Width="1.5" PointX="10.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.OrderStatu" Width="1.5" PointX="8.25" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Payment" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.PaymentToSeller" Width="1.5" PointX="7.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Product" Width="1.5" PointX="12.75" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="iSpanProjectModel.ProductDetail" Width="1.5" PointX="15" PointY="34.5" IsExpanded="true" />
         <EntityTypeShape EntityType="iSpanProjectModel.ProductPic" Width="1.5" PointX="15" PointY="37.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ProductStatu" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ReceiveAdrList" Width="1.5" PointX="7.5" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.RegionList" Width="1.5" PointX="3" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Report" Width="1.5" PointX="15" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ReportStatu" Width="1.5" PointX="12.75" PointY="39.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ReportType" Width="1.5" PointX="12.75" PointY="41.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.Shipper" Width="1.5" PointX="11.25" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ShipperToProduct" Width="1.5" PointX="20" PointY="30" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ShipperToSeller" Width="1.5" PointX="13.5" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.ShippingStatu" Width="1.5" PointX="15" PointY="43.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.SmallType" Width="1.5" PointX="10.5" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.SubOfficialEventList" Width="1.5" PointX="13.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iSpanProjectModel.SubOfficialEventToProduct" Width="1.5" PointX="16" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ProductStatu" Width="1.5" PointX="10.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ReceiveAdrList" Width="1.5" PointX="7.5" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.RegionList" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Report" Width="1.5" PointX="16" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ReportStatu" Width="1.5" PointX="13.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ReportType" Width="1.5" PointX="13.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Shipper" Width="1.5" PointX="11.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ShipperToSeller" Width="1.5" PointX="13.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ShippingStatu" Width="1.5" PointX="15" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.SmallType" Width="1.5" PointX="10.5" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.SubOfficialEventList" Width="1.5" PointX="15.75" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.SubOfficialEventToProduct" Width="1.5" PointX="18" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.WebAD" Width="1.5" PointX="13.5" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.WebADImageType" Width="1.5" PointX="11.25" PointY="42" IsExpanded="true" />
         <AssociationConnector Association="iSpanProjectModel.FK_ADToProduct_AD" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_ADToProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_ArguePic_Argument" ManuallyRouted="false" />
@@ -84,6 +84,7 @@
         <AssociationConnector Association="iSpanProjectModel.FK_Report_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_ShipperToSeller_MemberAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_WebAD_MemberAccount" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_SubOfficialEventList_OfficialEventList" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_OrderDetails_Product" ManuallyRouted="false" />
@@ -91,22 +92,19 @@
         <AssociationConnector Association="iSpanProjectModel.FK_Orders_Payment" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Orders_Shipper" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Orders_Statuses" ManuallyRouted="false" />
-        <AssociationConnector Association="iSpanProjectModel.FK_PaymentToProduct_Payment" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_PaymentToSeller_Payment" ManuallyRouted="false" />
-        <AssociationConnector Association="iSpanProjectModel.FK_PaymentToProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Product_ProductStatus1" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Product_SalesCourt" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Product_SmallType" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_ProductPic_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Report_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_RegionList" ManuallyRouted="false" />
-        <AssociationConnector Association="iSpanProjectModel.FK_ShipperToProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_SubOfficialEventToProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Report_ReportStatus" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_Report_ReportType" ManuallyRouted="false" />
-        <AssociationConnector Association="iSpanProjectModel.FK_ShipperToProduct_Shipper" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_ShipperToSeller_Shipper" ManuallyRouted="false" />
         <AssociationConnector Association="iSpanProjectModel.FK_SubOfficialEventToProduct_SubOfficialEventList" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_WebAD_WebADImageType" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

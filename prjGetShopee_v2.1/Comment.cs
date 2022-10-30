@@ -26,6 +26,8 @@ namespace prjGetShopee_v2._1
         public byte CommentStar { get; set; }
         public System.DateTime CommentTime { get; set; }
         public int ShipperStar { get; set; }
+        public string Comment2 { get; set; }
+        public string Comment3 { get; set; }
     
         public virtual OrderDetail OrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

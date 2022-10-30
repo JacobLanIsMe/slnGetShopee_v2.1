@@ -273,11 +273,34 @@ namespace prjGetShopee_v2._1
         private void btnDelete_Click(object sender, EventArgs e)
         {
             iSpanProjectEntities dbContext = new iSpanProjectEntities();
-            var q = dbContext.Products.Where(i => i.ProductID == 102).FirstOrDefault();
-            dbContext.Products.Remove(q);
-            dbContext.SaveChanges();
-            MessageBox.Show("已刪除");
-            btnDelete.Enabled = false;
+            var q = dbContext.ProductPics.Select(i => i.ProductID).Distinct().ToList();
+            var q1 = dbContext.Products.Where(i => !q.Contains(i.ProductID)).Select(i => i).ToList();
+            var productIDs = q1.Select(i => i.ProductID);
+            foreach (var i in productIDs)
+            {
+                listBox1.Items.Add(i);
+            }
+
+
+            //foreach (var a in q1)
+            //{
+            //    var productDetails = dbContext.ProductDetails.Where(i => i.ProductID == a.ProductID);
+            //    if (productDetails.Count() > 0)
+            //    {
+            //        foreach (var b in productDetails)
+            //        {
+            //            dbContext.ProductDetails.Remove(b);
+            //        }
+            //        dbContext.SaveChanges();
+            //    }
+            //}
+            //foreach (var a in q1)
+            //{
+            //    dbContext.Products.Remove(a);
+            //}
+            //dbContext.SaveChanges();
+            //MessageBox.Show("已刪除");
+            //btnDelete.Enabled = false;
         }
 
         private async void btnGetAllItem_Click(object sender, EventArgs e)
@@ -290,6 +313,7 @@ namespace prjGetShopee_v2._1
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://shopee.tw/all_categories");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            Thread.Sleep(300);
             var bigTypeUrlTaq = driver.FindElements(By.CssSelector("a.category-grid"));
             List<string> bigTypeUrlList = new List<string>();
             foreach (var i in bigTypeUrlTaq)
@@ -300,7 +324,12 @@ namespace prjGetShopee_v2._1
             {
                 driver.Navigate().GoToUrl(a);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-                driver.FindElement(By.CssSelector(".shopee-category-list__toggle-btn")).Click();
+                Thread.Sleep(300);
+                var otherBtn = driver.FindElements(By.CssSelector(".shopee-category-list__toggle-btn"));
+                if (otherBtn.Count > 0) 
+                {
+                    driver.FindElement(By.CssSelector(".shopee-category-list__toggle-btn")).Click();
+                }
                 Thread.Sleep(300);
                 string bigTypeName = driver.FindElement(By.CssSelector(".shopee-category-list__main-category")).Text;
                 var smallTypeUrlTaq = driver.FindElements(By.CssSelector("a.shopee-category-list__sub-category"));
@@ -318,6 +347,7 @@ namespace prjGetShopee_v2._1
                     }
                     driver.Navigate().GoToUrl(b.Key);
                     driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+                    Thread.Sleep(300);
                     var itemTaqs = driver.FindElements(By.CssSelector(".shopee-search-item-result__item>a"));
                     List<string> itemUrls = new List<string>();
                     foreach (var c in itemTaqs)
@@ -329,6 +359,7 @@ namespace prjGetShopee_v2._1
                     {
                         driver.Navigate().GoToUrl(itemUrls[c]);
                         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+                        Thread.Sleep(1000);
                         string productName = driver.FindElement(By.CssSelector("._2rQP1z")).Text;
                         string description = driver.FindElement(By.CssSelector("._1MqcWX")).Text;
                         int smallTypeID = dbContext.SmallTypes.Where(i => i.SmallTypeName == b.Value && i.BigType.BigTypeName == bigTypeName).Select(i => i.SmallTypeID).FirstOrDefault();
@@ -464,14 +495,15 @@ namespace prjGetShopee_v2._1
                                 }
                             }
                         }
-                        Thread.Sleep(300);
+                        
                         var pic = driver.FindElements(By.CssSelector("._3Usfk_"));
+                        //var pic = driver.FindElements(By.CssSelector("._2_49CO"));
+                        //var pic1 = driver.FindElements(By.CssSelector("._3CXjs-._3DKwBj"));
                         if (pic.Count > 0)
                         {
                             driver.FindElement(By.CssSelector("._3Usfk_")).Click();
-                        }
+                        }                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                         Thread.Sleep(300);
-                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                         var productPicUrls = driver.FindElements(By.CssSelector("._1BkYjB._3DKwBj"));
                         if (productPicUrls.Count > 0)
                         {
